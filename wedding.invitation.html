@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Invitation Of Wedding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #fff5f5; font-family: 'Poppins', sans-serif; color: #444; 
+            overflow-x: hidden; text-align: center;
+        }
+
+        #particles { position: fixed; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .flower { position: absolute; color: #ffb7b7; font-size: 20px; animation: fall linear infinite; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+        /* ANIMASI FADE UP */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+
+        .hero { 
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; background-position: center; position: relative; z-index: 2; padding: 20px;
+        }
+
+        .hero h2 { font-weight: 300; letter-spacing: 5px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 20px; color: #666; }
+        
+        .name-container { display: flex; flex-direction: column; align-items: center; gap: 5px; margin-bottom: 20px; }
+        .hero h1 { font-family: 'Sacramento', cursive; font-size: 4rem; color: #d63031; line-height: 1.1; }
+        .ampersand-hero { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.8rem; color: #888; margin: 10px 0; }
+        
+        .section { padding: 60px 20px; position: relative; z-index: 2; background: white; border-radius: 40px 40px 0 0; margin-top: -40px; }
+        .couple-wrap { margin: 30px 0; }
+        .couple-name { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #2d3436; display: block; }
+        .ampersand-mid { font-family: 'Sacramento', cursive; font-size: 3rem; color: #d63031; display: block; margin: 10px 0; }
+
+        .countdown { display: flex; justify-content: center; gap: 10px; margin: 30px 0; flex-wrap: wrap; }
+        .count-box { background: #d63031; color: white; padding: 12px; border-radius: 15px; min-width: 70px; }
+        .count-box span { display: block; font-size: 1.3rem; font-weight: bold; }
+
+        .btn { 
+            display: inline-block; padding: 15px 35px; background: #d63031; color: white; 
+            text-decoration: none; border-radius: 50px; font-weight: 600; margin-top: 25px;
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 6.5rem; }
+            .ampersand-hero { font-size: 2.5rem; }
+            .couple-name { font-size: 3.5rem; }
+            .ampersand-mid { font-size: 4.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles"></div>
+
+    <section class="hero">
+        <h2 class="fade-up">The Wedding Of</h2>
+        <div class="name-container fade-up delay-1">
+            <h1>Budi Pambudi</h1>
+            <div class="ampersand-hero">&</div>
+            <h1>Aprilia Dewi Cantika</h1>
+        </div>
+        <p class="fade-up delay-2" style="letter-spacing: 2px;">12 . 12 . 2026</p>
+    </section>
+
+    <section class="section fade-up delay-2">
+        <p style="font-size: 0.9rem; color: #888;">Assalamu’alaikum Wr. Wb.</p>
+        <div class="couple-wrap">
+            <span class="couple-name">Budi Pambudi</span>
+            <span class="ampersand-mid">&</span>
+            <span class="couple-name">Aprilia Dewi Cantika</span>
+        </div>
+        <div class="countdown" id="timer">
+            <div class="count-box"><span id="days">00</span><small>Hari</small></div>
+            <div class="count-box"><span id="hours">00</span><small>Jam</small></div>
+            <div class="count-box"><span id="mins">00</span><small>Menit</small></div>
+            <div class="count-box"><span id="secs">00</span><small>Detik</small></div>
+        </div>
+        <div style="margin-top: 40px; padding: 30px; border-radius: 20px; background: #fffafb; border: 1px solid #eee;">
+            <h3 style="font-family: 'Playfair Display'; font-size: 1.6rem; color: #d63031;">Resepsi Pernikahan</h3>
+            <p><strong>Gedung Pertemuan Sragen</strong><br>Sragen, Jawa Tengah</p>
+            <a href="https://goo.gl/maps/sragen" target="_blank" class="btn">Petunjuk Lokasi Maps</a>
+        </div>
+    </section>
+
+    <script>
+        setInterval(() => {
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            flower.innerHTML = '🌸';
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.getElementById('particles').appendChild(flower);
+            setTimeout(() => flower.remove(), 7000);
+        }, 600);
+
+        const weddingDate = new Date("Dec 12, 2026 09:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("mins").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("secs").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+        }, 1000);
+    </script>
+</body>
+</html>
